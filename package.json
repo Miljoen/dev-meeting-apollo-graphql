@@ -1,0 +1,19 @@
+{
+  "name": "dev-meeting-apollo-graphql",
+  "version": "1.0.0",
+  "description": "Deverloper Meeting material meant for presenting Apollo GraphQL",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Miljoen/dev-meeting-apollo-graphql.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Miljoen/dev-meeting-apollo-graphql/issues"
+  },
+  "homepage": "https://github.com/Miljoen/dev-meeting-apollo-graphql#readme"
+}
