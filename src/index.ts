@@ -5,6 +5,8 @@ import { makeExecutableSchema } from '@graphql-tools/schema'
 import dotenv from 'dotenv'
 import { typeDefs } from './schema'
 import { resolvers } from './resolvers'
+import { SubscriptionServer } from 'subscriptions-transport-ws'
+import { execute, subscribe } from 'graphql'
 
 dotenv.config()
 main()
@@ -19,6 +21,11 @@ async function main() {
     await server.start()
 
     server.applyMiddleware({ app })
+
+    SubscriptionServer.create(
+        { schema, execute, subscribe },
+        { server: httpServer, path: server.graphqlPath },
+    )
 
     httpServer.listen(process.env.HTTP_PORT, () => {
         console.log(`🚀 HTTP server ready at :${process.env.HTTP_PORT}${server.graphqlPath}`)
