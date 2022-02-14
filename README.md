@@ -8,8 +8,8 @@ Developer Meeting material meant for presenting Apollo GraphQL
 
 ### Installation (copy paste in terminal should do the trick!)
 ```
-git clone git@github.com:Miljoen/apollo-server-subscriptions.git
-cd apollo-server-subscriptions
+git clone git@github.com:Miljoen/dev-meeting-apollo-graphql.git
+cd dev-meeting-apollo-graphql
 npm i
 cp .env.example .env
 npm run start
