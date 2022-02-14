@@ -4,6 +4,7 @@
   "description": "Deverloper Meeting material meant for presenting Apollo GraphQL",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon src/index.ts"
   },
   "repository": {
     "type": "git",
@@ -16,6 +17,8 @@
   },
   "homepage": "https://github.com/Miljoen/dev-meeting-apollo-graphql#readme",
   "devDependencies": {
-    "@pxlwidgets/tsconfig": "^3.0.2"
+    "@pxlwidgets/tsconfig": "^3.0.2",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.5.0"
   }
 }
