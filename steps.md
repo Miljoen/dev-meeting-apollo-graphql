@@ -7,7 +7,7 @@ User type in schema:
 ```
 
 createUser in schema:
-```typescript
+```graphql
     type Mutation {
         createUser(input: CreateUserInput): User!
     }
@@ -24,6 +24,22 @@ createUser mutation in resolvers:
             return createUser(input)
         },
     },
+```
+
+Create related types:
+```typescript
+export interface User {
+    id: string
+    name: string
+}
+
+export interface GraphQLInput<T> {
+    input: T
+}
+
+export interface CreateUserInput {
+    name: string
+}
 ```
 
 schema.prisma setup:
@@ -53,7 +69,7 @@ export async function createUser(input: UserInput) {
 ```
 
 Add users query to schema:
-```typescript
+```graphql
     type Query {
         users: [User!]!
     }
@@ -85,7 +101,7 @@ export const pubSub = new PubSub()
 ```
 
 Add subscription to schema:
-```typescript
+```graphql
     type Subscription {
         userCreated: User
     }
