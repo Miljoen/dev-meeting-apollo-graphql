@@ -7,6 +7,6 @@ export interface GraphQLInput<T> {
     input: T
 }
 
-export interface UserInput {
+export interface CreateUserInput {
     name: string
 }
