@@ -4,9 +4,9 @@ import { ApolloServer } from 'apollo-server-express'
 import { makeExecutableSchema } from '@graphql-tools/schema'
 import dotenv from 'dotenv'
 import { typeDefs } from './schema'
-import { resolvers } from './resolvers'
 import { SubscriptionServer } from 'subscriptions-transport-ws'
 import { execute, subscribe } from 'graphql'
+import { resolvers } from './resolvers'
 
 dotenv.config()
 main()
