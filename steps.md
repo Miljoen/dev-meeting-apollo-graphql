@@ -20,7 +20,7 @@ createUser in schema:
 createUser mutation in resolvers:
 ```typescript
     Mutation: {
-        createUser(_: undefined, { input }: GraphQLInput<UserInput>) {
+        createUser(_: undefined, { input }: any) {
             return createUser(input)
         },
     },
