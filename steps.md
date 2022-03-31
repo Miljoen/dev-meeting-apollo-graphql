@@ -33,12 +33,12 @@ export interface User {
     name: string
 }
 
-export interface GraphQLInput<T> {
-    input: T
-}
-
 export interface CreateUserInput {
     name: string
+}
+
+export interface GraphQLInput<T> {
+    input: T
 }
 ```
 
