@@ -4,7 +4,8 @@
   "description": "Developer Meeting material meant for presenting Apollo GraphQL",
   "main": "src/index.ts",
   "scripts": {
-    "start": "nodemon src/index.ts"
+    "start": "nodemon src/index.ts",
+    "graphql:generate": "graphql-codegen --config codegen.yml"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,11 @@
     "subscriptions-transport-ws": "^0.11.0"
   },
   "devDependencies": {
+    "@graphql-codegen/add": "^3.1.1",
+    "@graphql-codegen/cli": "^2.6.2",
+    "@graphql-codegen/introspection": "^2.1.1",
+    "@graphql-codegen/typescript": "^2.4.11",
+    "@graphql-codegen/typescript-resolvers": "^2.6.4",
     "@pxlwidgets/tsconfig": "^3.0.2",
     "@types/dotenv": "^8.2.0",
     "@types/node": "^17.0.18",
