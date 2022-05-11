@@ -1,22 +1,24 @@
 import { pubSub } from './pub-sub'
 import { users } from './graphql/queries/users'
 import { createUser } from './graphql/mutations/create-user'
-import { GraphQLInput, UserInput } from './types'
+import { Resolvers } from '../generated/graphql'
 
-export const resolvers = {
+export const resolvers: Resolvers = {
     Query: {
         users() {
             return users()
         },
     },
     Mutation: {
-        createUser(_: undefined, { input }: GraphQLInput<UserInput>) {
+        createUser(_, { input }) {
             return createUser(input)
         },
     },
     Subscription: {
         userCreated: {
-            subscribe: () => pubSub.asyncIterator(['USER_CREATED']),
+            subscribe: () => ({
+                [Symbol.asyncIterator]: () => pubSub.asyncIterator(['USER_CREATED']),
+            }),
         },
     },
 }

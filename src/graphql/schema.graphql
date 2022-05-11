@@ -3,7 +3,7 @@ type Query {
 }
 
 type Mutation {
-    createUser(input: CreateUserInput): User!
+    createUser(input: CreateUserInput!): User!
 }
 
 type Subscription {
