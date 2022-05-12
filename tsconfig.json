@@ -1,10 +1,24 @@
 {
-    "extends": "@pxlwidgets/tsconfig",
     "compilerOptions": {
-        "typeRoots": [
-            "./node_modules/@types"
+        "target": "es2019",
+        "module": "commonjs",
+        "lib": [
+            "es2019"
         ],
-        "esModuleInterop": true
+        "declaration": true,
+        "sourceMap": true,
+        "outDir": "./lib",
+        "rootDir": ".",
+        "importHelpers": true,
+        "strict": true,
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
     },
-    "include": ["src/**/*.ts"]
+    "include": [
+        "./src/**/*.ts",
+        "./prisma/**/*"
+    ],
+    "exclude": ["node_modules"]
 }
