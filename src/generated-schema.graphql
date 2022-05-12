@@ -3,8 +3,58 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+input BoolFieldUpdateOperationsInput {
+  set: Boolean
+}
+
+input BoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
+"""
+The javascript `Date` as string. Type represents date and time as the ISO Date string.
+"""
+scalar DateTime
+
+input DateTimeFieldUpdateOperationsInput {
+  set: DateTime
+}
+
+input DateTimeFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: NestedDateTimeFilter
+  notIn: [DateTime!]
+}
+
 type Mutation {
+  createPost(data: PostCreateInput!): Post!
   createUser(data: UserCreateInput!): User!
+  deletePost(where: PostWhereUniqueInput!): Post
+  deleteUser(where: UserWhereUniqueInput!): User
+  updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+}
+
+input NestedBoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
+input NestedDateTimeFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: NestedDateTimeFilter
+  notIn: [DateTime!]
 }
 
 input NestedStringFilter {
@@ -21,7 +71,204 @@ input NestedStringFilter {
   startsWith: String
 }
 
+input NestedStringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringNullableFilter
+  notIn: [String!]
+  startsWith: String
+}
+
+input NullableStringFieldUpdateOperationsInput {
+  set: String
+}
+
+type Post {
+  content: String
+  createdAt: DateTime!
+  id: String!
+  published: Boolean!
+  title: String!
+  updatedAt: DateTime!
+  user: User
+  userId: String
+}
+
+input PostCreateInput {
+  content: String
+  createdAt: DateTime
+  id: String
+  published: Boolean!
+  title: String!
+  updatedAt: DateTime
+  user: UserCreateNestedOneWithoutPostsInput
+}
+
+input PostCreateManyUserInput {
+  content: String
+  createdAt: DateTime
+  id: String
+  published: Boolean!
+  title: String!
+  updatedAt: DateTime
+}
+
+input PostCreateManyUserInputEnvelope {
+  data: [PostCreateManyUserInput!]!
+  skipDuplicates: Boolean
+}
+
+input PostCreateNestedManyWithoutUserInput {
+  connect: [PostWhereUniqueInput!]
+  connectOrCreate: [PostCreateOrConnectWithoutUserInput!]
+  create: [PostCreateWithoutUserInput!]
+  createMany: PostCreateManyUserInputEnvelope
+}
+
+input PostCreateOrConnectWithoutUserInput {
+  create: PostCreateWithoutUserInput!
+  where: PostWhereUniqueInput!
+}
+
+input PostCreateWithoutUserInput {
+  content: String
+  createdAt: DateTime
+  id: String
+  published: Boolean!
+  title: String!
+  updatedAt: DateTime
+}
+
+input PostListRelationFilter {
+  every: PostWhereInput
+  none: PostWhereInput
+  some: PostWhereInput
+}
+
+input PostOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input PostOrderByWithRelationInput {
+  content: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  published: SortOrder
+  title: SortOrder
+  updatedAt: SortOrder
+  user: UserOrderByWithRelationInput
+  userId: SortOrder
+}
+
+enum PostScalarFieldEnum {
+  content
+  createdAt
+  id
+  published
+  title
+  updatedAt
+  userId
+}
+
+input PostScalarWhereInput {
+  AND: [PostScalarWhereInput!]
+  NOT: [PostScalarWhereInput!]
+  OR: [PostScalarWhereInput!]
+  content: StringNullableFilter
+  createdAt: DateTimeFilter
+  id: StringFilter
+  published: BoolFilter
+  title: StringFilter
+  updatedAt: DateTimeFilter
+  userId: StringNullableFilter
+}
+
+input PostUpdateInput {
+  content: NullableStringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  published: BoolFieldUpdateOperationsInput
+  title: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  user: UserUpdateOneWithoutPostsInput
+}
+
+input PostUpdateManyMutationInput {
+  content: NullableStringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  published: BoolFieldUpdateOperationsInput
+  title: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input PostUpdateManyWithWhereWithoutUserInput {
+  data: PostUpdateManyMutationInput!
+  where: PostScalarWhereInput!
+}
+
+input PostUpdateManyWithoutUserInput {
+  connect: [PostWhereUniqueInput!]
+  connectOrCreate: [PostCreateOrConnectWithoutUserInput!]
+  create: [PostCreateWithoutUserInput!]
+  createMany: PostCreateManyUserInputEnvelope
+  delete: [PostWhereUniqueInput!]
+  deleteMany: [PostScalarWhereInput!]
+  disconnect: [PostWhereUniqueInput!]
+  set: [PostWhereUniqueInput!]
+  update: [PostUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [PostUpdateManyWithWhereWithoutUserInput!]
+  upsert: [PostUpsertWithWhereUniqueWithoutUserInput!]
+}
+
+input PostUpdateWithWhereUniqueWithoutUserInput {
+  data: PostUpdateWithoutUserInput!
+  where: PostWhereUniqueInput!
+}
+
+input PostUpdateWithoutUserInput {
+  content: NullableStringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  published: BoolFieldUpdateOperationsInput
+  title: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input PostUpsertWithWhereUniqueWithoutUserInput {
+  create: PostCreateWithoutUserInput!
+  update: PostUpdateWithoutUserInput!
+  where: PostWhereUniqueInput!
+}
+
+input PostWhereInput {
+  AND: [PostWhereInput!]
+  NOT: [PostWhereInput!]
+  OR: [PostWhereInput!]
+  content: StringNullableFilter
+  createdAt: DateTimeFilter
+  id: StringFilter
+  published: BoolFilter
+  title: StringFilter
+  updatedAt: DateTimeFilter
+  user: UserRelationFilter
+  userId: StringNullableFilter
+}
+
+input PostWhereUniqueInput {
+  id: String
+}
+
 type Query {
+  post(where: PostWhereUniqueInput!): Post
+  posts(cursor: PostWhereUniqueInput, distinct: [PostScalarFieldEnum!], orderBy: [PostOrderByWithRelationInput!], skip: Int, take: Int, where: PostWhereInput): [Post!]!
+  user(where: UserWhereUniqueInput!): User
   users(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): [User!]!
 }
 
@@ -33,6 +280,10 @@ enum QueryMode {
 enum SortOrder {
   asc
   desc
+}
+
+input StringFieldUpdateOperationsInput {
+  set: String
 }
 
 input StringFilter {
@@ -50,16 +301,54 @@ input StringFilter {
   startsWith: String
 }
 
+input StringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: NestedStringNullableFilter
+  notIn: [String!]
+  startsWith: String
+}
+
 type Subscription {
   userCreated: User!
 }
 
 type User {
+  _count: UserCount
   id: String!
   name: String!
+  posts(cursor: PostWhereUniqueInput, distinct: [PostScalarFieldEnum!], orderBy: [PostOrderByWithRelationInput!], skip: Int, take: Int, where: PostWhereInput): [Post!]!
+}
+
+type UserCount {
+  posts: Int!
 }
 
 input UserCreateInput {
+  id: String
+  name: String!
+  posts: PostCreateNestedManyWithoutUserInput
+}
+
+input UserCreateNestedOneWithoutPostsInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutPostsInput
+  create: UserCreateWithoutPostsInput
+}
+
+input UserCreateOrConnectWithoutPostsInput {
+  create: UserCreateWithoutPostsInput!
+  where: UserWhereUniqueInput!
+}
+
+input UserCreateWithoutPostsInput {
   id: String
   name: String!
 }
@@ -67,11 +356,43 @@ input UserCreateInput {
 input UserOrderByWithRelationInput {
   id: SortOrder
   name: SortOrder
+  posts: PostOrderByRelationAggregateInput
+}
+
+input UserRelationFilter {
+  is: UserWhereInput
+  isNot: UserWhereInput
 }
 
 enum UserScalarFieldEnum {
   id
   name
+}
+
+input UserUpdateInput {
+  id: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  posts: PostUpdateManyWithoutUserInput
+}
+
+input UserUpdateOneWithoutPostsInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutPostsInput
+  create: UserCreateWithoutPostsInput
+  delete: Boolean
+  disconnect: Boolean
+  update: UserUpdateWithoutPostsInput
+  upsert: UserUpsertWithoutPostsInput
+}
+
+input UserUpdateWithoutPostsInput {
+  id: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+}
+
+input UserUpsertWithoutPostsInput {
+  create: UserCreateWithoutPostsInput!
+  update: UserUpdateWithoutPostsInput!
 }
 
 input UserWhereInput {
@@ -80,6 +401,7 @@ input UserWhereInput {
   OR: [UserWhereInput!]
   id: StringFilter
   name: StringFilter
+  posts: PostListRelationFilter
 }
 
 input UserWhereUniqueInput {

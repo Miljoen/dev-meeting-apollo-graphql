@@ -7,7 +7,7 @@ import { SubscriptionServer } from 'subscriptions-transport-ws'
 import { execute, subscribe } from 'graphql'
 import path from 'path'
 import { buildSchema } from 'type-graphql'
-import { FindManyUserResolver, UserCrudResolver } from '../prisma/generated/type-graphql'
+import { CreatePostResolver, DeletePostResolver, DeleteUserResolver, FindManyPostResolver, FindManyUserResolver, FindUniquePostResolver, FindUniqueUserResolver, PostCrudResolver, PostRelationsResolver, UpdatePostResolver, UpdateUserResolver, UserCrudResolver, UserRelationsResolver } from '../prisma/generated/type-graphql'
 import { PrismaClient } from '@prisma/client'
 import { Context } from 'vm'
 import { UserCreatedResolver } from './type-graphql/resolvers/user-created'
@@ -23,8 +23,18 @@ async function main() {
     const schema = await buildSchema({
         resolvers: [
             FindManyUserResolver,
-            UserCreatedResolver,
+            FindUniqueUserResolver,
             CreateUserResolver,
+            UpdateUserResolver,
+            DeleteUserResolver,
+            UserRelationsResolver,
+            UserCreatedResolver,
+            FindManyPostResolver,
+            FindUniquePostResolver,
+            CreatePostResolver,
+            UpdatePostResolver,
+            DeletePostResolver,
+            PostRelationsResolver,
         ],
         emitSchemaFile: path.resolve(__dirname, './generated-schema.graphql'),
         validate: false,
