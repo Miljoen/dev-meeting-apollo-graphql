@@ -22,19 +22,22 @@ async function main() {
 
     const schema = await buildSchema({
         resolvers: [
+            // GENERATED RESOLVERS
             FindManyUserResolver,
             FindUniqueUserResolver,
-            CreateUserResolver,
             UpdateUserResolver,
             DeleteUserResolver,
             UserRelationsResolver,
-            UserCreatedResolver,
             FindManyPostResolver,
             FindUniquePostResolver,
             CreatePostResolver,
             UpdatePostResolver,
             DeletePostResolver,
             PostRelationsResolver,
+
+            // CUSTOM RESOLVERS
+            CreateUserResolver,
+            UserCreatedResolver,
         ],
         emitSchemaFile: path.resolve(__dirname, './generated-schema.graphql'),
         validate: false,
